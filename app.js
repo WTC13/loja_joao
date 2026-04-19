@@ -15,6 +15,8 @@ app.get("/", function(req, res){
     res.render("home");
 })
 
-app.listen(port, function(req, res){
-    console.log(`server running in: http://localhost:${port}"`);
-});
+// app.listen(port, function(req, res){
+//     console.log(`server running in: http://localhost:${port}"`);
+// });
+
+module.exports = app;
