@@ -1,0 +1,77 @@
+<main class="max-w-7xl mx-auto px-4 py-10">
+    <nav class="flex mb-8 text-[10px] font-bold uppercase tracking-widest text-zinc-500 gap-2">
+        <a href="/" class="hover:text-blue-500">Home</a>
+        <span>/</span>
+        <a href="/categoria/{{product.category_slug}}" class="hover:text-blue-500">{{product.category_name}}</a>
+        <span>/</span>
+        <span class="text-zinc-300">{{product.name}}</span>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <div class="lg:col-span-7 space-y-4">
+            <div class="bg-zinc-900 rounded-3xl p-12 border border-layout-border flex items-center justify-center relative overflow-hidden group min-h-[500px]">
+                <div class="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <img id="main-image" src="{{product.images.[0]}}" class="h-96 object-contain relative z-10 transition-transform duration-700 hover:scale-110" alt="{{product.name}}">
+            </div>
+            
+            <div class="grid grid-cols-5 gap-4">
+                {{#each product.images}}
+                <button onclick="document.getElementById('main-image').src='{{this}}'" class="bg-zinc-900 border border-layout-border rounded-2xl p-3 hover:border-blue-500 transition-all focus:border-blue-500 outline-none">
+                    <img src="{{this}}" class="h-16 w-full object-contain">
+                </button>
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="lg:col-span-5 space-y-8">
+            <div class="space-y-4">
+                <span class="bg-emerald-500/10 text-emerald-400 text-[10px] font-black px-3 py-1 rounded-full border border-emerald-500/20 uppercase tracking-tighter">
+                    Estoque Disponível
+                </span>
+                <h1 class="text-4xl font-black uppercase tracking-tighter leading-none text-white">
+                    {{product.name}}
+                </h1>
+                <p class="text-zinc-400 text-sm leading-relaxed">
+                    {{product.short_description}}
+                </p>
+            </div>
+
+            <div class="bg-zinc-900 p-8 rounded-3xl border border-layout-border relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4">
+                    <i class="bi bi-shield-check text-zinc-800 text-5xl"></i>
+                </div>
+                
+                {{#if product.price_discount}}
+                    <span class="text-zinc-500 line-through text-sm font-bold">De R$ {{product.price}}</span>
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-white text-5xl font-black italic">R$ {{product.price_discount}}</span>
+                        <span class="text-emerald-500 font-bold text-sm">NO PIX</span>
+                    </div>
+                {{else}}
+                    <span class="text-white text-5xl font-black italic">R$ {{product.price}}</span>
+                {{/if}}
+
+                <button class="w-full mt-8 bg-blue-600 hover:bg-blue-500 text-white font-black py-5 rounded-2xl shadow-[0_15px_40px_rgba(37,99,235,0.4)] transition-all flex items-center justify-center gap-4 group uppercase italic tracking-tighter">
+                    Garantir este item
+                    <i class="bi bi-arrow-right text-xl group-hover:translate-x-2 transition-transform"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <h3 class="text-white font-black text-xs uppercase tracking-widest flex items-center gap-2">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                    Especificações Técnicas
+                </h3>
+                <div class="grid grid-cols-1 gap-2">
+                    {{#each product.specifications}}
+                    <div class="flex justify-between items-center bg-zinc-900/30 border border-layout-border p-3 rounded-xl hover:bg-zinc-800/50 transition-colors">
+                        <span class="text-zinc-500 text-[10px] font-black uppercase tracking-widest">{{@key}}</span>
+                        <span class="text-zinc-200 text-xs font-bold">{{this}}</span>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
