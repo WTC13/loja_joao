@@ -386,7 +386,7 @@
 
         <div id="tecnico-carousel" class="owl-carousel owl-theme">
             
-            <div class="item">
+            {{!-- <div class="item">
                 <div class="bg-zinc-900 rounded-2xl p-4 border-2 border-layout-border hover:border-blue-500 transition-all duration-500 shadow-lg group">
                     <div class="h-40 w-full bg-zinc-800 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden">
                         <img src="/img/3.jpeg" class="h-32 object-contain group-hover:rotate-12 transition-transform duration-500" alt="Borracha DHS">
@@ -446,7 +446,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             {{#each products}}
             <div class="item">
@@ -459,12 +459,12 @@
                         </div>
 
                         <div class="space-y-3">
-                            <h3 class="text-white font-bold text-sm">Li-Ning Carbon Expert</h3>
+                            <h3 class="text-white font-bold text-sm">{{this.name}}</h3>
                             
                             <div class="space-y-1.5">
                                 <div class="flex justify-between text-[10px] text-zinc-500 font-bold uppercase">
                                     <span>Controle</span>
-                                    <span class="text-white">92%</span>
+                                    <span class="text-white">{{this.specifications.controle}}%</span>
                                 </div>
                                 <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
                                     <div class="bg-emerald-500 h-full w-[92%]"></div>
@@ -472,7 +472,7 @@
                             </div>
 
                             <div class="mt-4 pt-3 border-t border-zinc-800 flex justify-between items-center">
-                                <p class="text-white font-black text-lg">R$ 580,00</p>
+                                <p class="text-white font-black text-lg">R$ {{this.price}}</p>
                                 
                                 <div class="text-blue-500 group-hover:text-white transition-colors">
                                     <i class="bi bi-plus-circle-fill text-2xl"></i>

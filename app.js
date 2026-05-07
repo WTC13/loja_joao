@@ -2,12 +2,10 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const { engine } = require("express-handlebars");
-const supabase = require("./config/supabase_client")
+const supabase = require("./config/supabase_client");
+const router = require("./routes/routes");
 require("dotenv").config();
-
-const port = process.env.PORT;
-
-
+// const port = process.env.PORT;
 
 // view engine
 app.engine('handlebars', engine({
@@ -17,6 +15,7 @@ app.engine('handlebars', engine({
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "handlebars");
 app.use(express.static("public"));
+
 
 // routes 
 app.get("/", async function(req, res) {
@@ -35,8 +34,7 @@ app.get("/", async function(req, res) {
 app.get('/produto/:slug', async (req, res) => {
     const slugParams = req.params.slug; // Pega o "raquete-li-ning-carbon-expert" da URL
 
-    try {
-        // 1. Busca os dados no Supabase usando o slug
+    try {        
         const { data: product, error } = await supabase
             .from('products')
             .select(`
@@ -50,10 +48,9 @@ app.get('/produto/:slug', async (req, res) => {
             return res.status(404).send('Produto não encontrado');
         }
 
-        // 2. Renderiza a página product.handlebars enviando os dados do banco
         res.render('product', {
             product: product,
-            defaultLayout: "main",
+            layout: "products",
             category_name: product.categories.name, 
             title: product.name 
         });
@@ -64,8 +61,8 @@ app.get('/produto/:slug', async (req, res) => {
     }
 });
 
-app.listen(port, function(req, res){
-     console.log(`server running in: http://localhost:${port}"`);
-});
+// app.listen(port, function(req, res){
+//      console.log(`server running in: http://localhost:${port}"`);
+// });
 
 module.exports = app;
