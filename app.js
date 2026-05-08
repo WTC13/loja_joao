@@ -61,8 +61,8 @@ app.get('/produto/:slug', async (req, res) => {
     }
 });
 
-// app.listen(port, function(req, res){
-//      console.log(`server running in: http://localhost:${port}"`);
-// });
+// // app.listen(port, function(req, res){
+// //      console.log(`server running in: http://localhost:${port}"`);
+// // });
 
 module.exports = app;
