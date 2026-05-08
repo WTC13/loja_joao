@@ -23,7 +23,7 @@ app.get("/", async function(req, res) {
         const { data: results, error } = await supabase.from('products').select('*');
         if (error) throw error;
 
-        // Aqui passamos a lista 'products' para a home
+        
         res.render("home", { products: results }); 
     } catch (err) {
         console.error(err);
